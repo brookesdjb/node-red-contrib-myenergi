@@ -1,0 +1,36 @@
+{
+  "name": "@brookesdj/node-red-contrib-myenergi",
+  "version": "1.0.0",
+  "description": "Node-red node to connect to Myenergi products",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brookesdjb/node-red-contrib-myenergi.git"
+  },
+  "node-red": {
+    "nodes": {
+      "myenergi": "myenergi.js"
+    }
+  },
+  "keywords": [
+    "node-red",
+    "myenergi",
+    "zappi",
+    "havi",
+    "eddie",
+    "ev",
+    "charge"
+  ],
+  "author": "David Brookes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brookesdjb/node-red-contrib-myenergi/issues"
+  },
+  "homepage": "https://github.com/brookesdjb/node-red-contrib-myenergi#readme",
+  "dependencies": {
+    "myenergi-api": "^2.0.0"
+  }
+}

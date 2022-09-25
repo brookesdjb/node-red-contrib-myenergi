@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    RED.nodes.registerType('myenergi', {
+        category: 'myenergi',
+        color: '#a6bbcf',
+        defaults: {
+            name: { value: "" }
+        },
+        
+        credentials: {
+            username: { type: "text" },
+            password: { type: "password" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "file.png",
+        label: function () {
+            return this.name || "myenergi";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="myenergi">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+<div class="form-row">
+    <label for="node-input-username"><i class="fa fa-tag"></i> Hub Serial</label>
+    <input type="text" id="node-input-username">
+</div>
+<div class="form-row">
+    <label for="node-input-password"><i class="fa fa-tag"></i> Hub API Key</label>
+    <input type="password" id="node-input-password">
+</div>
+</script>
+
+<script type="text/html" data-help-name="myenergi">
+    <p>A simple node that gets the status of myenergi devices</p>
+    <h2>Get all Devices</h2>
+    <p>To get all devices, keep msg.product and msg.serial blank. The returned object holds 3 arrays, one for each type of product: havi, eddi and zappi</p>
+    <h2>Get all of one type of device</h2>
+    <p>To get the stats of all of one type of device, set msg.product to the type of product you wish to get stats about. E.g. msg.product='zappi' would return an array of objects, one for each of your zappis</p>
+    <h2>Get one specific device</h2>
+    <p>To get the stats of one device set both the msg.product (to be the product type) and msg.serial to be the serial of the device you wish to get data about</p>
+
+</script>
+
