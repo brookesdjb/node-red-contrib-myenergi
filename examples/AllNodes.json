@@ -1,0 +1,260 @@
+[
+    {
+        "id": "bf7912b6e5b5819c",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "783b96ea6cd3c5b1",
+        "type": "inject",
+        "z": "bf7912b6e5b5819c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "bee9e4913b8af1b1",
+                "03d55a81c9d12ee7",
+                "7947bc2f940ebc03",
+                "8bbec7dcd92c07ec",
+                "5fbdf3d76e6f7c23",
+                "c24dddc09a97cb69",
+                "85349dca0f673e5f"
+            ]
+        ]
+    },
+    {
+        "id": "ae98d7bae9ccc685",
+        "type": "debug",
+        "z": "bf7912b6e5b5819c",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "85349dca0f673e5f",
+        "type": "myenergi",
+        "z": "bf7912b6e5b5819c",
+        "name": "",
+        "server": "b7f83098fa9ceb6e",
+        "x": 360,
+        "y": 80,
+        "wires": [
+            [
+                "3c19e5902335ddd5"
+            ]
+        ]
+    },
+    {
+        "id": "3c19e5902335ddd5",
+        "type": "debug",
+        "z": "bf7912b6e5b5819c",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "c24dddc09a97cb69",
+        "type": "getZappiAll",
+        "z": "bf7912b6e5b5819c",
+        "name": "",
+        "server": "b7f83098fa9ceb6e",
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "ae98d7bae9ccc685"
+            ]
+        ]
+    },
+    {
+        "id": "5fbdf3d76e6f7c23",
+        "type": "getZappi",
+        "z": "bf7912b6e5b5819c",
+        "name": "",
+        "server": "b7f83098fa9ceb6e",
+        "x": 360,
+        "y": 220,
+        "wires": [
+            [
+                "5a0856eb4ffcd16b"
+            ]
+        ]
+    },
+    {
+        "id": "5a0856eb4ffcd16b",
+        "type": "debug",
+        "z": "bf7912b6e5b5819c",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "8bbec7dcd92c07ec",
+        "type": "getEddiAll",
+        "z": "bf7912b6e5b5819c",
+        "name": "",
+        "server": "b7f83098fa9ceb6e",
+        "x": 350,
+        "y": 280,
+        "wires": [
+            [
+                "12fcc133cb26350d"
+            ]
+        ]
+    },
+    {
+        "id": "7947bc2f940ebc03",
+        "type": "getEddi",
+        "z": "bf7912b6e5b5819c",
+        "name": "",
+        "server": "b7f83098fa9ceb6e",
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "8f153935658e6a14"
+            ]
+        ]
+    },
+    {
+        "id": "12fcc133cb26350d",
+        "type": "debug",
+        "z": "bf7912b6e5b5819c",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "8f153935658e6a14",
+        "type": "debug",
+        "z": "bf7912b6e5b5819c",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "bee9e4913b8af1b1",
+        "type": "getHarviAll",
+        "z": "bf7912b6e5b5819c",
+        "name": "",
+        "server": "b7f83098fa9ceb6e",
+        "x": 350,
+        "y": 400,
+        "wires": [
+            [
+                "b4070749c6b41af7"
+            ]
+        ]
+    },
+    {
+        "id": "b4070749c6b41af7",
+        "type": "debug",
+        "z": "bf7912b6e5b5819c",
+        "name": "debug 6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "9f75ff5776589391",
+        "type": "debug",
+        "z": "bf7912b6e5b5819c",
+        "name": "debug 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "03d55a81c9d12ee7",
+        "type": "getHarvi",
+        "z": "bf7912b6e5b5819c",
+        "name": "",
+        "server": "b7f83098fa9ceb6e",
+        "x": 360,
+        "y": 460,
+        "wires": [
+            [
+                "9f75ff5776589391"
+            ]
+        ]
+    },
+    {
+        "id": "b7f83098fa9ceb6e",
+        "type": "myenergi-api",
+        "hubSerial": "12396258"
+    }
+]

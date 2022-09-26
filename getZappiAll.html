@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('myenergi', {
+    RED.nodes.registerType('getZappiAll', {
         category: 'myenergi',
         color: '#a6bbcf',
         defaults: {
@@ -11,12 +11,12 @@
         outputs: 1,
         icon: "file.png",
         label: function () {
-            return this.name || "myenergi";
+            return this.name || "getZappiAll";
         }
     });
 </script>
 
-<script type="text/html" data-template-name="myenergi">
+<script type="text/html" data-template-name="getZappiAll">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -28,10 +28,9 @@
 
 </script>
 
-<script type="text/html" data-help-name="myenergi">
-    <p>A simple node that gets the status of all of myenergi devices</p>
-    <h2>Get all Devices</h2>
-    <p> The returned array holds 3 object, one for each type of product: havi, eddi and zappi with an array of your paired products in each.</p>
-
+<script type="text/html" data-help-name="getZappiAll">
+    <h2>Get all Zappi Devices</h2>
+    <p>A myenergi node to get the status of all Zappi devices</p>
+   
 </script>
 

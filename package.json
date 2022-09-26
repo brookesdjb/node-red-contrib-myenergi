@@ -1,19 +1,28 @@
 {
   "name": "node-red-contrib-myenergi",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Node-red node to connect to Myenergi products",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "restart":"node-red",
+    "watch": "nodemon -e js -x \"npm run restart\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brookesdjb/node-red-contrib-myenergi.git"
   },
   "node-red": {
+    "version": ">=3.0.0",
     "nodes": {
       "myenergi": "myenergi.js",
-      "myenergi-api": "credentials.js"
+      "myenergi-api": "credentials.js",
+      "getZappiAll": "getZappiAll.js",
+      "getZappi":"getZappi.js",
+      "getEddiAll": "getEddiAll.js",
+      "getEddi":"getEddi.js",
+      "getHarviAll": "getHarviAll.js",
+      "getHarvi":"getHarvi.js"
     }
   },
   "keywords": [
