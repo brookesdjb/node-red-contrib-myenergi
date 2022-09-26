@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-myenergi",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Node-red node to connect to Myenergi products",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,8 @@
   },
   "node-red": {
     "nodes": {
-      "myenergi": "myenergi.js"
+      "myenergi": "myenergi.js",
+      "myenergi-api": "credentials.js"
     }
   },
   "keywords": [

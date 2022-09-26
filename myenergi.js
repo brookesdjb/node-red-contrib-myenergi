@@ -3,16 +3,17 @@ module.exports = function(RED) {
 
       function MyEnergiNode(config) {
         RED.nodes.createNode(this,config);
+        this.server = RED.nodes.getNode(config.server);
+
         var node = this;
-        const ME = require('myenergi-api')
-        const username = this.credentials.username;
-        const password = this.credentials.password;
-        const myenergi =  new ME.MyEnergi(this.credentials.username, this.credentials.password);
+   
+        const myenergi = this.server.myenergi
+        // this.status({text: this.name)};
 
         node.on('input', async function(msg, send, done) {
-            if(!username || !password){
-                done('No Credentials')
-            }
+if(myenergi == null){
+    done('API Error, check credentials')
+}
             if(!msg.product){
                 const statusAll = await myenergi.getStatusAll();
                 msg.payload = statusAll;
@@ -39,10 +40,5 @@ module.exports = function(RED) {
           done()
         });
     }
-    RED.nodes.registerType("myenergi",MyEnergiNode,{
-        credentials: {
-            username: {type:"text"},
-            password: {type:"password"}
-        }
-    });
+    RED.nodes.registerType("myenergi",MyEnergiNode);
 }
