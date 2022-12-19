@@ -6,29 +6,25 @@ module.exports = function (RED) {
         this.server = RED.nodes.getNode(config.server);
         const myenergi = this.server.myenergi;
 
-        const boost = async (zappiSerialNumber, zappiBoostMode, boostKwh, completeTime) => {
-            const result = await myenergi.setZappiBoostMode(
-                +zappiSerialNumber,
-                zappiBoostMode,
-                boostKwh,
-                completeTime
-            );
-            if (result?.status !== 0) {
-                this.status({
-                    text: `Boost failed - status [${result?.status}] text [${result?.statustext}]`,
-                    fill: "red",
-                });
-            } else {
-                this.status({ text: `Boosting ${boostKwh}kWh`, fill: "green" });
-            }
-            return result;
-        };
-
         this.on("input", async (msg) => {
             if (myenergi == null) {
                 const text = "API Error, check credentials";
                 this.status({ text, fill: "red" });
                 return this.error(text);
+            }
+
+            const boostMode = ZappiBoostMode[msg.payload.zappiBoostMode];
+            if (!boostMode) {
+                const text = `You must set msg.payload.zappiBoostMode to one of [Manual, Smart, Stop].`;
+                this.status({ text, fill: "red" });
+                return this.error(text);
+            }
+
+            if (boostMode === ZappiBoostMode.Smart && !msg.payload.zappiBoostCompleteTime) {
+                const text =
+                    "Smart boost mode requires a completion time to be set in msg.payload.zappiBoostCompleteTime";
+                this.status({ text, fill: "red" });
+                return this.error(text, msg);
             }
 
             const boostKwh = msg.payload.boostKwh || 99;
@@ -45,35 +41,25 @@ module.exports = function (RED) {
                 zappiSerialNumber = zappiAll[0].sno;
             }
 
-            if (msg.payload.zappiBoostMode?.toLowerCase() === "manual") {
-                const payload = await boost(
-                    +zappiSerialNumber,
-                    ZappiBoostMode.Manual,
-                    +boostKwh
-                );
-                return this.send({ payload });
-            } else if (msg.payload.zappiBoostMode?.toLowerCase() === "smart") {
-                if (!msg.payload.zappiBoostCompleteTime) {
-                    const text =
-                        "Smart boost mode requires a completion time to be set in msg.payload.zappiBoostCompleteTime";
-                    this.status({ text, fill: "red" });
-                    return this.error(text, msg);
-                }
-                const payload = await boost(
-                    zappiSerialNumber,
-                    ZappiBoostMode.Smart,
-                    +boostKwh,
-                    msg.payload.zappiBoostCompleteTime
-                );
-                return this.send({ payload });
-            } else if (msg.payload.zappiBoostMode?.toLowerCase() === "stop") {
-                const payload = await boost(+zappiSerialNumber, ZappiBoostMode.Stop);
-                return this.send({ payload });
+            const payload = await myenergi.setZappiBoostMode(
+                +zappiSerialNumber,
+                boostMode,
+                +boostKwh,
+                msg.payload.zappiBoostCompleteTime
+            );
+            if (payload?.status !== 0) {
+                this.status({
+                    text: `Boost failed - status [${payload?.status}] text [${payload?.statustext}]`,
+                    fill: "red",
+                });
+            } else {
+                this.status({
+                    text: `Boost mode set to [${msg.payload.zappiBoostMode}]`,
+                    fill: "green",
+                });
             }
 
-            const text = `You must set msg.payload.zappiBoostMode to one of [Manual, Smart, Stop].`;
-            this.status({ text, fill: "red" });
-            return this.error(text);
+            return this.send({ payload });
         });
     }
     RED.nodes.registerType("setZappiBoostMode", setZappiBoostMode);

@@ -13,6 +13,13 @@ module.exports = function (RED) {
                 return this.error(text);
             }
 
+            const chargeMode = ZappiChargeMode[msg.payload.zappiChargeMode];
+            if (!chargeMode) {
+                const text = `You must set msg.payload.zappiChargeMode to one of [Fast, Eco, EcoPlus, Off].`;
+                this.status({ text, fill: "red" });
+                return this.error(text);
+            }
+
             let zappiSerialNumber = msg.payload.zappiSerialNumber;
             if (!zappiSerialNumber) {
                 const zappiAll = await myenergi.getStatusZappiAll();
@@ -23,13 +30,6 @@ module.exports = function (RED) {
                 }
 
                 zappiSerialNumber = zappiAll[0].sno;
-            }
-
-            const chargeMode = ZappiChargeMode[msg.payload.zappiChargeMode];
-            if (!chargeMode) {
-                const text = `You must set msg.payload.zappiChargeMode to one of [Fast, Eco, EcoPlus, Off].`;
-                this.status({ text, fill: "red" });
-                return this.error(text);
             }
 
             const payload = await myenergi.setZappiChargeMode(+zappiSerialNumber, chargeMode);
