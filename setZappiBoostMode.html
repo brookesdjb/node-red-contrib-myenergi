@@ -1,0 +1,43 @@
+<script type="text/javascript">
+    RED.nodes.registerType('setZappiBoostMode', {
+        category: 'myenergi',
+        color: '#a6bbcf',
+        defaults: {
+            name: { value: "" },
+            server: {value:"", type:"myenergi-api"},
+
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "file.png",
+        label: function () {
+            return this.name || "setZappiBoostMode";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="setZappiBoostMode">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-tag"></i> API Config</label>
+        <input type="select" id="node-input-server" >
+    </div>
+
+</script>
+
+<script type="text/html" data-help-name="setZappiBoostMode">
+    <h2>Ask a zappi to change to boost mode </h2>
+    <p>You must set <code>msg.payload.zappiBoostMode</code> to one of <code>[Manual, Smart, Stop]</code></p>
+    <p>If you have more than one zappi charger, you must supply <code>msg.payload.zappiSerialNumber</code>.</p>
+    <p>If you are entering Manual mode you can optionally supply <code>msg.payload.zappiBoostKwh</code>
+        to set the amount of boost in kWh. The default is 99kWh if you don't supply this.
+    </p>
+    <p>If you are entering Smart mode you can optionally supply <code>msg.payload.zappiBoostKwh</code>
+        as per above. You must also supply <code>msg.payload.zappiBoostCompleteTime</code> so 
+        the Zappi charger knows when the number of kWh must be delivered by. E.g. 23:30.
+    </p>
+</script>
+
