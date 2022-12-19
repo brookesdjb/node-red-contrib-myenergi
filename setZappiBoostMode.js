@@ -13,39 +13,33 @@ module.exports = function (RED) {
                 return this.error(text);
             }
 
-            const boostMode = ZappiBoostMode[msg.payload.zappiBoostMode];
+            const boostMode = ZappiBoostMode[msg.payload.boostMode];
             if (!boostMode) {
-                const text = `You must set msg.payload.zappiBoostMode to one of [Manual, Smart, Stop].`;
+                const text = `You must set msg.payload.boostMode to one of [Manual, Smart, Stop].`;
                 this.status({ text, fill: "red" });
                 return this.error(text);
             }
 
-            if (boostMode === ZappiBoostMode.Smart && !msg.payload.zappiBoostCompleteTime) {
+            if (boostMode === ZappiBoostMode.Smart && !msg.payload.completeTime) {
                 const text =
-                    "Smart boost mode requires a completion time to be set in msg.payload.zappiBoostCompleteTime";
+                    "Smart boost mode requires a completion time to be set in msg.payload.completeTime";
                 this.status({ text, fill: "red" });
                 return this.error(text, msg);
             }
 
             const boostKwh = msg.payload.boostKwh || 99;
 
-            let zappiSerialNumber = msg.payload.zappiSerialNumber;
-            if (!zappiSerialNumber) {
+            let serial = msg.payload.serial;
+            if (!serial) {
                 const zappiAll = await myenergi.getStatusZappiAll();
-                if (zappiAll?.length !== 1) {
-                    const text = `[${zappiAll?.length}] zappi chargers found. You must set msg.payload.zappiSerialNumber to choose one.`;
-                    this.status({ text, fill: "red" });
-                    return this.error(text, msg);
-                }
-
-                zappiSerialNumber = zappiAll[0].sno;
+                serial = zappiAll[0].sno;
             }
 
             const payload = await myenergi.setZappiBoostMode(
-                +zappiSerialNumber,
+                +serial,
                 boostMode,
                 +boostKwh,
-                msg.payload.zappiBoostCompleteTime
+                msg.payload.completeTime
             );
             if (payload?.status !== 0) {
                 this.status({
@@ -54,7 +48,7 @@ module.exports = function (RED) {
                 });
             } else {
                 this.status({
-                    text: `Boost mode set to [${msg.payload.zappiBoostMode}]`,
+                    text: `Boost mode set to [${msg.payload.boostMode}]`,
                     fill: "green",
                 });
             }

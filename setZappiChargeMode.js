@@ -13,26 +13,20 @@ module.exports = function (RED) {
                 return this.error(text);
             }
 
-            const chargeMode = ZappiChargeMode[msg.payload.zappiChargeMode];
+            const chargeMode = ZappiChargeMode[msg.payload.chargeMode];
             if (!chargeMode) {
-                const text = `You must set msg.payload.zappiChargeMode to one of [Fast, Eco, EcoPlus, Off].`;
+                const text = `You must set msg.payload.chargeMode to one of [Fast, Eco, EcoPlus, Off].`;
                 this.status({ text, fill: "red" });
                 return this.error(text);
             }
 
-            let zappiSerialNumber = msg.payload.zappiSerialNumber;
-            if (!zappiSerialNumber) {
+            let serial = msg.payload.serial;
+            if (!serial) {
                 const zappiAll = await myenergi.getStatusZappiAll();
-                if (zappiAll?.length !== 1) {
-                    const text = `[${zappiAll?.length}] zappi chargers found. You must set msg.payload.zappiSerialNumber to choose one.`;
-                    this.status({ text, fill: "red" });
-                    return this.error(text, msg);
-                }
-
-                zappiSerialNumber = zappiAll[0].sno;
+                serial = zappiAll[0].sno;
             }
 
-            const payload = await myenergi.setZappiChargeMode(+zappiSerialNumber, chargeMode);
+            const payload = await myenergi.setZappiChargeMode(+serial, chargeMode);
             if (payload?.status !== 0) {
                 this.status({
                     text: `Set charge mode failed - status [${payload?.status}] text [${payload?.statustext}]`,
@@ -40,7 +34,7 @@ module.exports = function (RED) {
                 });
             } else {
                 this.status({
-                    text: `Charge mode set to [${msg.payload.zappiChargeMode}]`,
+                    text: `Charge mode set to [${msg.payload.chargeMode}]`,
                     fill: "green",
                 });
             }
