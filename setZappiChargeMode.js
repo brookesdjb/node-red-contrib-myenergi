@@ -1,7 +1,7 @@
 module.exports = function (RED) {
     const { ZappiChargeMode } = require("myenergi-api");
 
-    function setZappiChargeMode(config) {
+    function SetZappiChargeMode(config) {
         RED.nodes.createNode(this, config);
         this.server = RED.nodes.getNode(config.server);
         const myenergi = this.server.myenergi;
@@ -43,5 +43,5 @@ module.exports = function (RED) {
         });
     }
 
-    RED.nodes.registerType("setZappiChargeMode", setZappiChargeMode);
+    RED.nodes.registerType("setZappiChargeMode", SetZappiChargeMode);
 };
