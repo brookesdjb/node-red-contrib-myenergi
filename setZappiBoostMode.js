@@ -56,5 +56,6 @@ module.exports = function (RED) {
             return this.send({ payload });
         });
     }
+
     RED.nodes.registerType("setZappiBoostMode", SetZappiBoostMode);
 };
