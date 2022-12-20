@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('setZappiChargeMode', {
+    RED.nodes.registerType('setZappiGreenLevel', {
         category: 'myenergi',
         color: '#a6bbcf',
         defaults: {
@@ -11,12 +11,12 @@
         outputs: 1,
         icon: "file.png",
         label: function () {
-            return this.name || "setZappiChargeMode";
+            return this.name || "setZappiGreenLevel";
         }
     });
 </script>
 
-<script type="text/html" data-template-name="setZappiChargeMode">
+<script type="text/html" data-template-name="setZappiGreenLevel">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -28,9 +28,9 @@
 
 </script>
 
-<script type="text/html" data-help-name="setZappiChargeMode">
-    <h2>Change the charging mode of a Zappi charger</h2>
-    <p>You must set <code>msg.payload.chargeMode</code> to one of <code>[Fast, Eco, EcoPlus, Off]</code></p>
+<script type="text/html" data-help-name="setZappiGreenLevel">
+    <h2>Set the minimum green level of a Zappi charger</h2>
+    <p>You must set <code>msg.payload.greenLevel</code> to a number</code></p>
     <p>If you have more than one Zappi charger, you must supply <code>msg.payload.serial</code>.</p>
     <p>Refer to the official Zappi documentation <a href="https://support.myenergi.com/hc/en-gb/articles/360020720298-zappi-charging-modes">here</a></p>
 </script>

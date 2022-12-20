@@ -32,12 +32,13 @@
     <h2>Ask a zappi to change to boost mode </h2>
     <p>You must set <code>msg.payload.boostMode</code> to one of <code>[Manual, Smart, Stop]</code></p>
     <p>If you have more than one zappi charger, you must supply <code>msg.payload.serial</code>.</p>
-    <p>If you are entering Manual mode you can optionally supply <code>msg.payload.zappiBoostKwh</code>
+    <p>If you are entering Manual mode you can optionally supply <code>msg.payload.boostKwh</code>
         to set the amount of boost in kWh. The default is 99kWh if you don't supply this.
     </p>
-    <p>If you are entering Smart mode you can optionally supply <code>msg.payload.zappiBoostKwh</code>
+    <p>If you are entering Smart mode you can optionally supply <code>msg.payload.boostKwh</code>
         as per above. You must also supply <code>msg.payload.completeTime</code> so 
         the Zappi charger knows when the number of kWh must be delivered by. E.g. 23:30.
     </p>
+    <p>Refer to the official Zappi documentation <a href="https://support.myenergi.com/hc/en-gb/articles/360020720298-zappi-charging-modes">here</a></p>
 </script>
 

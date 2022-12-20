@@ -24,7 +24,8 @@
             "getHarviAll": "getHarviAll.js",
             "getHarvi": "getHarvi.js",
             "setZappiChargeMode": "setZappiChargeMode.js",
-            "setZappiBoostMode": "setZappiBoostMode.js"
+            "setZappiBoostMode": "setZappiBoostMode.js",
+            "setZappiGreenLevel": "setZappiGreenLevel.js"
         }
     },
     "keywords": [
