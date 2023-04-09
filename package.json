@@ -1,46 +1,54 @@
 {
-  "name": "node-red-contrib-myenergi",
-  "version": "1.0.4",
-  "description": "Node-red node to connect to Myenergi products",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "restart":"node-red",
-    "watch": "nodemon -e js -x \"npm run restart\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brookesdjb/node-red-contrib-myenergi.git"
-  },
-  "node-red": {
-    "version": ">=3.0.0",
-    "nodes": {
-      "myenergi": "myenergi.js",
-      "myenergi-api": "credentials.js",
-      "getZappiAll": "getZappiAll.js",
-      "getZappi":"getZappi.js",
-      "getEddiAll": "getEddiAll.js",
-      "getEddi":"getEddi.js",
-      "getHarviAll": "getHarviAll.js",
-      "getHarvi":"getHarvi.js"
+    "name": "node-red-contrib-myenergi",
+    "version": "1.0.4-biddster",
+    "description": "Node-red node to connect to Myenergi products",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "restart": "node-red",
+        "watch": "nodemon -e js -x \"npm run restart\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/brookesdjb/node-red-contrib-myenergi.git"
+    },
+    "node-red": {
+        "version": ">=3.0.0",
+        "nodes": {
+            "myenergi": "myenergi.js",
+            "myenergi-api": "credentials.js",
+            "getZappiAll": "getZappiAll.js",
+            "getZappi": "getZappi.js",
+            "getEddiAll": "getEddiAll.js",
+            "getEddi": "getEddi.js",
+            "getHarviAll": "getHarviAll.js",
+            "getHarvi": "getHarvi.js",
+            "setZappiChargeMode": "setZappiChargeMode.js",
+            "setZappiBoostMode": "setZappiBoostMode.js",
+            "setZappiGreenLevel": "setZappiGreenLevel.js"
+        }
+    },
+    "keywords": [
+        "node-red",
+        "myenergi",
+        "zappi",
+        "havi",
+        "eddie",
+        "ev",
+        "charge"
+    ],
+    "author": "David Brookes",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/brookesdjb/node-red-contrib-myenergi/issues"
+    },
+    "homepage": "https://github.com/brookesdjb/node-red-contrib-myenergi#readme",
+    "dependencies": {
+        "myenergi-api": "^2.0.0"
+    },
+    "prettier": {
+        "singleQuote": false,
+        "tabWidth": 4,
+        "printWidth": 96
     }
-  },
-  "keywords": [
-    "node-red",
-    "myenergi",
-    "zappi",
-    "havi",
-    "eddie",
-    "ev",
-    "charge"
-  ],
-  "author": "David Brookes",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/brookesdjb/node-red-contrib-myenergi/issues"
-  },
-  "homepage": "https://github.com/brookesdjb/node-red-contrib-myenergi#readme",
-  "dependencies": {
-    "myenergi-api": "^2.0.0"
-  }
 }
