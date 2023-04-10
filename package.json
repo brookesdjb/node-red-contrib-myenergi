@@ -1,6 +1,6 @@
 {
     "name": "node-red-contrib-myenergi",
-    "version": "1.0.4-biddster",
+    "version": "1.0.5",
     "description": "Node-red node to connect to Myenergi products",
     "main": "index.js",
     "scripts": {
